@@ -1,0 +1,1070 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 20px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+}
+
+.home-block u {
+    text-decoration: underline;
+}
+
+main .check {
+    color: var(--color-dark);
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background);
+}
+
+main {
+    margin-top: 1.4rem;
+}
+
+main .home-block {
+    text-align: center;
+    justify-content: center;
+
+}
+
+.transaction-topup {
+    color: green;
+}
+
+.transaction-expense {
+    color: red;
+}
+
+main .main-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 2.5%;
+    max-width: 95%;
+}
+
+@property --a {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+
+@keyframes animate-dash {
+    0% {
+        --a: 0deg;
+    }
+    100% {
+        --a: 360deg;
+    }
+}
+
+
+main .add-block {
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    margin-left: 15px;
+    margin-right: 15px;
+
+    height: 45px;
+    position: relative;
+
+
+    width: 45px;
+
+
+    background: repeating-conic-gradient(from var(--a), var(--color-block-background) 0%,
+    var(--color-block-background) 5%, transparent 5%, transparent 40%, var(--color-block-background) 50%);
+    animation: animate-dash 4s linear infinite;
+    animation-play-state: running;
+
+
+    box-shadow: 0 0 2px var(--color-block-shadow),
+    0 0 4px var(--color-block-shadow),
+    0 0 6px var(--color-block-shadow),
+    0 0 8px var(--color-block-shadow-far),
+    0 0 14px var(--color-block-shadow-far),
+    0 0 20px var(--color-block-shadow-far);
+    color: var(--color-dark);
+
+    transition: box-shadow 0.5s ease;
+}
+
+
+main .add-block::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(from var(--a), var(--color-block-background) 0%,
+    var(--color-block-background) 5%, transparent 5%, transparent 40%, var(--color-block-background) 50%);
+    animation: animate-dash 4s linear infinite;
+    animation-delay: -1s;
+    border-radius: 50%;
+    animation-play-state: running;
+
+}
+
+main .add-block::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    content: '+';
+    position: absolute;
+    inset: 2px;
+    background: var(--color-background);
+    border-radius: 50%;
+}
+
+
+main .add-block:hover {
+
+    box-shadow: 0 0 4px var(--color-block-shadow),
+    0 0 8px var(--color-block-shadow),
+    0 0 12px var(--color-block-shadow),
+    0 0 16px var(--color-block-shadow-far),
+    0 0 28px var(--color-block-shadow-far),
+    0 0 40px var(--color-block-shadow-far);
+}
+
+.theme-block {
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--color-nav-button);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.theme-block:hover {
+    transform: translateY(-2px);
+}
+
+.logout-hover {
+    transition: all 0.3s ease;
+}
+
+.logout-hover:hover {
+    transform: translateY(-2px);
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding-top: 0.8rem;
+
+}
+
+
+.logout-Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--color-nav-button);
+}
+
+.share-button {
+    transition: all 0.3s ease;
+}
+
+.share-button:hover {
+    transform: translateY(-2px);
+}
+
+
+.share-btn svg {
+    width: 25px !important;
+}
+
+
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign-shared svg {
+    width: 30px !important;
+
+}
+
+.sign svg path {
+    fill: white;
+}
+
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/*.logout-Btn:hover {*/
+/*  width: 125px;*/
+/*  border-radius: 40px;*/
+/*  transition-duration: .3s;*/
+/*}*/
+
+/*.logout-Btn:hover .sign {*/
+/*  width: 30%;*/
+/*  transition-duration: .3s;*/
+/*  padding-left: 20px;*/
+/*}*/
+
+/*.logout-Btn:hover .text {*/
+/*  opacity: 1;*/
+/*  width: 70%;*/
+/*  transition-duration: .3s;*/
+/*  padding-right: 10px;*/
+/*}*/
+
+/*.logout-Btn:active {*/
+/*  transform: translate(2px ,2px);*/
+/*}*/
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--color-nav-button);
+}
+
+.sort-button .sign {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-button .sign svg {
+    width: 24px;
+    height: 24px;
+}
+
+.sort-button .sign svg path {
+    fill: white;
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 100;
+}
+
+.sort-dropdown:hover .dropdown-menu,
+.sort-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sort-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-nav-button-sort);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.sort-option:hover {
+    background-color: var(--color-nav-button-sort-hover);
+}
+
+.sort-option span {
+    display: inline-block;
+    line-height: 1;
+}
+
+.sort-dropdown .dropdown-menu {
+    pointer-events: auto;
+}
+
+
+.money-block {
+    background-color: var(--color-money-block-background);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 10px;
+    position: relative;
+    box-shadow: 0 0 15px var(--color-money-block);
+    border: 2px solid var(--color-money-block-border);
+    color: var(--color-dark);
+    cursor: pointer;
+}
+
+.money-block-shared {
+    background-color: var(--color-money-block-background);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 10px;
+    position: relative;
+    box-shadow: 0 0 15px var(--color-money-block);
+    border: 2px solid var(--color-money-block-border);
+    color: var(--color-dark);
+    cursor: pointer;
+}
+
+.money-block .delete-money-block {
+    cursor: pointer;
+    color: var(--color-dark);
+    position: absolute;
+    top: 6px;
+    right: 10px;
+
+}
+
+
+.money-block p {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.money-block-shared p {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.balance {
+    margin-bottom: 15px !important;
+    font-size: 19px !important;
+    font-weight: bold;
+}
+
+.block-name {
+    font-size: 20px !important;
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+}
+
+.line {
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-top-up-font) !important;
+}
+
+.line_add_block {
+
+    background-color: var(--color-top-up-font) !important;
+    margin: 10px auto;
+    width: 60%;
+    border: none;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px !important;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-up-button {
+    background: linear-gradient(135deg, var(--color-story-first), var(--color-story-second));
+    color: #fff !important;
+}
+
+.more-button {
+    background-color: transparent;
+    border: var(--color-top-up-border) solid 2px;
+}
+
+.action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.money-block .top-up-button, .money-block .story-button {
+
+    color: var(--color-top-up-font);
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--color-top-up-shadow);
+    width: 100%;
+}
+
+.money-block-shared .story-button {
+    background: linear-gradient(135deg, var(--color-story-first), var(--color-story-second));
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--color-top-up-shadow);
+    width: 100%;
+    border: none;
+
+
+}
+
+.money-block-shared .story-button:hover {
+
+}
+
+.money-block-shared .story-button p {
+    margin: 0;
+}
+
+.money-block .top-up-button:hover, .money-block .story-button:hover {
+
+}
+
+.money-block .top-up-button p, .money-block .story-button p {
+    margin: 0;
+}
+
+
+.transactions-list {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.transactions-list li {
+    background-color: var(--color-background);
+    border-radius: 10px;
+    border: 2px solid var(--color-block-shadow);
+    margin: 5px;
+    list-style-type: none;
+    padding: 5px;
+}
+
+
+.date-heading {
+    position: sticky;
+    top: 0;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    font-weight: bold;
+    border: none !important;
+    font-size: 1.2em;
+    color: var(--color-dark);
+    background-color: transparent !important;
+    z-index: 1;
+    margin: 5px;
+    list-style-type: none;
+
+    padding: 5px;
+    text-align: center;
+
+}
+
+.date-heading span {
+    border-radius: 0px 0px 20px 20px !important;
+    background-color: var(--color-white);
+    padding: 4px 40px;
+
+}
+
+.new-label {
+    position: sticky;
+    top: 0;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--color-dark);
+    background-color: transparent !important;
+    border: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    z-index: 1;
+    margin: 5px;
+    list-style-type: none;
+    padding: 5px;
+    text-align: center;
+}
+
+.new-label span {
+    background-color: var(--color-white);
+    padding: 0 5px;
+}
+
+.transaction-item {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+    padding-bottom: 10px !important;
+}
+
+.transaction-time {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.transaction-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+.transaction-description {
+    flex: 1;
+    font-size: 16px;
+    max-width: 50%;
+}
+
+
+.transaction-delete-button {
+    margin-top: 10px;
+}
+
+.transaction-topup {
+    color: green;
+}
+
+.transaction-expense {
+    color: red;
+}
+
+
+.amount-delete-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.transaction-amount {
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+
+}
+
+
+.transaction-delete-icon {
+    font-size: 16px;
+    color: var(--color-dark);
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s, opacity 0.3s;
+    opacity: 0.5;
+    width: 110%;
+    height: 110%;
+
+}
+
+.transaction-delete-icon:hover {
+    opacity: 1;
+    color: var(--color-danger);
+}
+
+
+.transaction-form-row {
+    background-color: var(--color-background);
+    border-radius: 10px;
+    border: 2px solid var(--color-block-shadow);
+    margin: 5px;
+    list-style-type: none;
+    padding: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.transaction-form-description {
+
+    margin-right: 10px;
+    width: 110%;
+}
+
+.transaction-form-right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    text-align: center;
+
+}
+
+
+.transaction-form-amount {
+    flex: 0 0 100px;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.transaction-form-submit {
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.submit_add_tran_button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #4CAF50;
+    bottom: 0;
+}
+
+.transaction-form-description input,
+.transaction-form-amount input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.transaction-form-description label,
+.transaction-form-amount label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input-class {
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--color-dark);
+}
+
+.transaction-form-row .form-input-class {
+    font-size: 20px;
+}
+
+.transaction-button-block {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.add-transaction-btn {
+    font-weight: bold;
+    background: var(--color-btn);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    margin-top: 5px;
+}
+
+.add-transaction-btn:hover {
+    transform: translateY(-3px);
+}
+
+.add-transaction-btn:active {
+    transform: translateY(1px);
+}
+
+.add-transaction-block {
+    position: relative;
+}
+
+.add-transaction {
+
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+}
+
+
+.graph-button {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.graph-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.graphs-toggle-option {
+    cursor: pointer;
+    color: var(--color-dark);
+}
+
+.graphs-toggle-option.active {
+    color: var(--color-danger);
+}
+
+
+.footer-currency {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 10px 15px;
+    text-align: center;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#toggle-currency-block {
+    width: 20%;
+    min-width: 60px;
+
+    background-color: var(--color-toggle);
+    opacity: 1;
+
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px 10px 8px 8px;
+
+    transition: 0.5s;
+    transition-property: box-shadow;
+
+    box-shadow: 0 0 5px var(--color-toggle);
+}
+
+#toggle-arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+    font-size: 1em;
+    transform: rotate(0deg);
+}
+
+#toggle-currency-block:hover {
+    /*opacity: 0.8;*/
+    box-shadow: 0 0 1px var(--color-toggle),
+    0 0 5px var(--color-toggle),
+    0 0 10px var(--color-toggle),
+    0 0 20px var(--color-toggle);
+}
+
+.exchange-rates-wrapper {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    width: 100%;
+    max-height: 0;
+}
+
+.exchange-rates-wrapper.hidden {
+    max-height: 0;
+}
+
+.exchange-rates-wrapper.visible {
+    max-height: 500px;
+}
+
+
+.exchange-rates-wrapper {
+    background-color: transparent;
+    padding: 0px;
+    border-radius: 8px;
+}
+
+#exchange-rates-container {
+    background-color: transparent;
+    text-align: center;
+    padding: 15px;
+}
+
+.exchange-title {
+    background-color: var(--color-background);
+    padding: 7px;
+    border-radius: 15px 15px 0 0;
+    border: var(--color-toggle) solid 2px;
+    border-bottom: transparent solid 3px;
+    z-index: 999;
+
+}
+
+
+#exchange-rates-container h4 {
+
+    font-size: 18px;
+    color: var(--color-dark);
+    margin-bottom: 0;
+
+}
+
+#exchange-rates {
+    border: var(--color-toggle) solid 3px;
+    box-shadow: 0 0px 1px var(--color-exchange-shadow),
+    0 0px 2px var(--color-exchange-shadow),
+    0 0px 4px var(--color-exchange-shadow),
+    0 0px 8px var(--color-exchange-shadow);
+    background-color: var(--color-background);
+    border-radius: 7px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 6px;
+}
+
+.exchange-rate {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 120px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exchange-rate strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.exchange-rate span {
+    font-size: 14px;
+    color: #333;
+}
+
+
+.positive-balance {
+    color: green;
+}
+
+.negative-balance {
+    color: red;
+}
+
+.notification {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 17px;
+    z-index: 1000;
+    transition: top 0.5s;
+}
+
+.notification.show {
+    top: 0;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+.notification button {
+    margin: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.notification button:hover {
+    background-color: #ddd;
+}
+
+.alert.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.add-expenses-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.add-expenses {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.add-expenses-balance {
+    margin-top: 20px;
+}
+
+.add-expenses-class {
+    background-color: var(--color-background);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    padding: 5px !important;
+    border-radius: 15px !important;
+}
+
+.add-expenses-class-name {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    border: var(--color-money-block) 2px solid;
+}
+
+.top-up-form-class {
+    font-size: 1.4rem !important;
+    font-weight: bold;
+    background-color: var(--color-background);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 5px !important;
+    border-radius: 15px !important;
+}
+
+.add-top-up {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.top-up-amount {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.top-up-submit {
+    padding-top: 20px;
+}

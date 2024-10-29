@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+
+    <div class="login-page">
+        <div class="ring">
+            <i style="--clr:#6F2232;"></i>
+            <i style="--clr:#950740;"></i>
+            <i style="--clr:#C3073F;"></i>
+            <div class="login">
+                <h2>Log In</h2>
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="inputBx">
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+
+                        {{ form.username }}
+                    </div>
+                    <div class="inputBx">
+                        {% if form.password.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.password.errors }}
+                            </div>
+                        {% endif %}
+                        {{ form.password }}
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Sign in">
+                    </div>
+                    <div class="links_login">
+                        <a href="{% url 'signup' %}">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock content %}
