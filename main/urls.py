@@ -4,6 +4,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('planning/', views.plan, name='plan'),
+    path('planning/process_ai_data/', views.process_ai_data, name='process_ai_data'),
     path('add_transaction/', views.add_transaction, name='add_transaction'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
@@ -13,5 +15,6 @@ urlpatterns = [
     path('top_up_balance/', views.top_up_balance, name='top_up_balance'),
     path('user/<uuid:unique_link>/', views.shared_page, name='shared_page'),
     path('get_graph_data/<int:money_block_id>/', views.get_graph_data, name='get_graph_data'),
-    path('user/<uuid:unique_link>/get_graph_data/<int:money_block_id>/', views.get_graph_data_shared, name='get_graph_data_shared'),
+    path('user/<uuid:unique_link>/get_graph_data/<int:money_block_id>/', views.get_graph_data_shared,
+         name='get_graph_data_shared'),
 ]

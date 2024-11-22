@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}Planning{% endblock %}
+
+{% block content %}
+    <div class="planning-container">
+        <div class="planning-title">
+            <h1>Planning Page</h1>
+        </div>
+        <div class="planning-table">
+            <table border="1" id="planning-table">
+                <thead>
+                <tr>
+                    {% for block_info in blocks %}
+                        <th contenteditable="true">{{ block_info.block.name }}</th>
+                    {% endfor %}
+                    {% for i in 20|range_list %}
+                        <th contenteditable="true"></th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for block_info in blocks %}
+                        <th contenteditable="true">{{ block_info.block.balance }}</th>
+                    {% endfor %}
+                    {% for i in 20|range_list %}
+                        <th contenteditable="true"></th>
+                    {% endfor %}
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for i in max_transactions|range_list %}
+                    <tr>
+                        {% for block_info in blocks %}
+                            <td contenteditable="true">
+                                {% if block_info.transactions|length > forloop.parentloop.counter0 %}
+                                    {% with transaction=block_info.transactions|index:forloop.parentloop.counter0 %}
+                                        {{ transaction.description }} - {{ transaction.amount }}
+                                    {% endwith %}
+                                {% else %}
+
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                        {% for i in 20|range_list %}
+                            <td contenteditable="true" style="min-width: 20px;">
+
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button id="export-button">Export to Excel</button>
+        <button id="ai-button">AI</button>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('export-button').addEventListener('click', function () {
+            var table = document.getElementById('planning-table');
+            var wb = XLSX.utils.table_to_book(table, {sheet: "Planning Data"});
+            XLSX.writeFile(wb, 'PlanningData' + '.xlsx');
+        });
+    </script>
+
+    <script>
+        // CSRF token retrieval function
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        document.getElementById('ai-button').addEventListener('click', function () {
+            // Collect table data
+            var table = document.getElementById('planning-table');
+            var data = [];
+            var headers = [];
+            for (var i = 0; i < table.rows[0].cells.length; i++) {
+                headers[i] = table.rows[0].cells[i].innerText.trim();
+            }
+            for (var i = 0; i < table.rows.length; i++) {
+                var tableRow = table.rows[i];
+                var rowData = {};
+                for (var j = 0; j < tableRow.cells.length; j++) {
+                    rowData[headers[j]] = tableRow.cells[j].innerText.trim();
+                }
+                data.push(rowData);
+            }
+
+            // Send data to the backend via fetch
+            fetch('{% url "process_ai_data" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({'data': JSON.stringify(data)}),
+            })
+                .then(response => {
+
+                    return response.json();
+                })
+                .then(data => {
+                    {#console.log('Data:', data);#}
+                    {#console.log('Data-sorted: ', data.sorted_transactions)#}
+                    {#console.log('Data-processed: ', data.processed_data)#}
+                    {#console.log('Data-processed-sorted: ', data.processed_data.sorted_transactions)#}
+                    if (data.processed_data.sorted_transactions) {
+                        console.log(data.processed_data);
+                        {#updateTable(data.processed_data.sorted_transactions);#}
+                        console.log('Data-processed-sorted: ', data.processed_data.sorted_transactions);
+                        {#updateTable(data.processed_data.additional_insights);#}
+                        console.log('Data-processed-additional: ', data.processed_data.additional_insights);
+                        {#updateTable(data.processed_data.total_balance);#}
+                        console.log('Data-processed-total: ', data.processed_data.total_balance);
+                    } else if (data.error) {
+                        alert('Error: ' + data.error);
+                    } else {
+                        alert('An unexpected error occurred.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred while processing the data.');
+                });
+        });
+
+        function updateTable(processedData) {
+            // Clear existing table body
+            var table = document.getElementById('planning-table');
+            var tbody = table.getElementsByTagName('tbody')[0];
+            {#tbody.innerHTML = '';#}
+
+            // Rebuild the table body with processed data
+            processedData.forEach(function (rowData) {
+                var row = document.createElement('tr');
+                Object.values(rowData).forEach(function (cellData) {
+                    var cell = document.createElement('td');
+                    cell.contentEditable = true;
+                    cell.innerText = cellData;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+
+{% endblock %}

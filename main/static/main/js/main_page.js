@@ -90,11 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('share-link').value = shareUrl;
 
     });
-    document.querySelectorAll('.share-button').forEach((button) => {
-        button.addEventListener('click', (event) => {
+    document.getElementById('share-button').addEventListener('click', (event) => {
             event.stopPropagation();
             showPopup('.share-popup-container', '.share-popup-content');
-        });
+
     });
 
 

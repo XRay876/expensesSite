@@ -1,0 +1,34 @@
+.planning-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    gap: 5vh;
+    align-items: center;
+}
+
+.planning-title {
+    color: red;
+
+}
+
+.planning-table {
+    display: flex;
+    overflow: auto;
+    width: 95%;
+    height: 80%;
+    border: 2px solid darkred;
+}
+
+.planning-table table {
+    border: 2px solid black;
+}
+
+.planning-table td {
+    border: 1px solid darkgoldenrod;
+}
+
+.planning-table th {
+    border: 1px solid darkblue;
+}
