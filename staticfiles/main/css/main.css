@@ -89,8 +89,6 @@ main .add-block {
     align-items: center;
     justify-content: center;
 
-
-    margin-left: 15px;
     margin-right: 15px;
 
     height: 45px;
@@ -286,6 +284,7 @@ main .add-block:hover {
 .sort-dropdown {
     position: relative;
     display: inline-block;
+    margin-left: 15px;
 }
 
 .sort-button {
@@ -386,6 +385,12 @@ main .add-block:hover {
     color: var(--color-dark);
     cursor: pointer;
     max-width: 300px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.money-block.visible {
+    opacity: 1;
 }
 
 .money-block-shared {

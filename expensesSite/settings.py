@@ -7,10 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = token
 
-DEBUG = True
-# DEBUG = False
-# ALLOWED_HOSTS = ['expensessite.space', 'https://expensessite.space', 'http://expensessite.space', 'www.expensessite.space', '85.234.107.254']
-ALLOWED_HOSTS = ['*']
+# DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['expensessite.space', 'https://expensessite.space', 'http://expensessite.space', 'www.expensessite.space', '85.234.107.254']
+# ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [

@@ -80,9 +80,8 @@
                 </label>
             </div>
 
-            <form action="{% url 'home' %}" method="post">
-                {% csrf_token %}
-                <button class="logout-Btn logout-hover" type="submit">
+            <a href="{% url 'home' %}">
+                <div class="logout-Btn logout-hover">
 
                     <div class="sign sign-shared">
                         <svg viewBox="0 0 20 20" version="1.1"
@@ -108,9 +107,9 @@
                     </div>
 
                     <div class="text">Logout</div>
-                </button>
+                </div>
 
-            </form>
+            </a>
 
         </div>
 
@@ -176,7 +175,6 @@
         const blockTransactions = {{ block_transactions|safe }};
         const uniqueLink = '{{ unique_link }}';
     </script>
+
     <script type="module" src="{% static 'main/js/shared_page.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'main/js/theme.js' %}"></script>
 {% endblock %}

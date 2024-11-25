@@ -508,7 +508,7 @@ def process_ai_data(request):
 
                 table_data = json.loads(data)
                 prompt = generate_prompt(table_data)
-                # print(prompt)
+
                 try:
 
                     chat_completion = client.chat.completions.create(
@@ -520,12 +520,11 @@ def process_ai_data(request):
                     )
 
                     ai_output = chat_completion.choices[0].message.content
-                    # print(ai_output)
+
                     ai_output = clean_ai_output(ai_output)
-                    # print('------')
-                    # print(ai_output)
+                    
                     processed_data = json.loads(ai_output)
-                    print(processed_data)
+
 
                     return JsonResponse({'processed_data': processed_data})
                 except Exception as e:
@@ -540,25 +539,18 @@ def process_ai_data(request):
 
 
 def generate_prompt(table_data):
-    # prompt = f"Given the following financial data in JSON format:\n{json.dumps(table_data)}\n\n"
-    # prompt += "Please analyze the data, sort the transactions by amount in descending order, "
-    # prompt += "calculate the total balance, and provide any additional insights that might be helpful. "
-    # prompt += "Return the processed data in JSON format, matching the structure of the input data."
-    # prompt += "Don't give me any code or extra notes. Give me only JSON data. Example of output: "
-    # prompt += "{ 'name_of_money_block' : 'data', '...', '...'},{ 'name_of_money_block' : .... }..."
-    # prompt += ("Add any notes about additional insight that might be helpful,"
-    #            "like Sum or Median or Any thoughts, so put it in the same JSON format, like:")
-    # prompt += "{ 'additional Note' : 'Note', 'Note'}, {'Another note':'Note','Note'}..."
-    # prompt += "The mandatory rule for your output, that NO TEXT HAS TO BE WITHOUT JSON STRUCTURE"
 
     prompt = (
         f"Given the following financial data in JSON format:\n"
         f"{json.dumps(table_data)}\n\n"
         "Please perform the following tasks:\n"
         "1. Analyze the data.\n"
-        "2. Sort the transactions by amount in descending order.\n"
+        "2. Find the most valuable transaction in data and provide notes - why.\n"
         "3. Calculate the total balance.\n"
-        "4. Provide any additional insights that might be helpful based on data.\n\n"
+        "4. Mandatory provide any additional insights that might be helpful based on data.\n"
+        "5. Mandatory provide additional notes (full sentences) based on data in JSON format in appropriate place."
+        "If it more than 1 sentence that add another 'Note' : 'Text', dont put more than "
+        "1 sentence in one JSON cell! Mandatory rule: No text in your output can be without JSON format!\n\n"
         "Important Instructions:\n"
         "- Return the processed data in valid JSON format.\n"
         "- Do not include any empty keys or keys with empty strings as values.\n"
@@ -570,39 +562,107 @@ def generate_prompt(table_data):
         " finish with JSON structure.\n\n"
         "Example of the expected JSON output:\n"
         "{\n"
-        "  \"sorted_transactions\": [\n"
+        "  \"Big Valuable Transactions\": [\n"
         "    {\n"
-        "      \"transaction_block_name\": \"Tuition money\",\n"
-        "      \"description\": \"Top Up\",\n"
-        "      \"amount\": +1000.00\n"
+        "      \"Block Name\": \"Tuition money\",\n"
+        "      \"Description\": \"Top Up: Oct. 28, 2024, 11:30 p.m.\",\n"
+        "      \"Amount\": +1000.00,\n"
+        "      \"Valuable because\": \"The biggest expense on food\"\n"
         "    },\n"
         "    {\n"
-        "      \"transaction_block_name\": \"Tuition money\",\n"
-        "      \"description\": \"Purchase\",\n"
-        "      \"amount\": -500.00\n"
+        "      \"Block Name\": \"Tuition money\",\n"
+        "      \"Description\": \"Purchase: Oct. 26, 2024, 9:30 a.m.\",\n"
+        "      \"Amount\": -500.00,\n"
+        "      \"Valuable because\": \"The smallest expense on clothes\"\n"
         "    }\n"
         "  ],\n"
-        "  \"total_balance\": 1500.00,\n"
+        "  \"total_balance\": {\n"
+        "    \"Total Balance\": 1500.00,\n"
+        "  },\n"
         "  \"additional_insights\": {\n"
-        "    \"highest_transaction\": 1000.00,\n"
-        "    \"lowest_transaction\": 500.00,\n"
-        "    \"average_transaction\": 750.00\n"
-        "    \"additional_note_about_spending_1\": You need to spend less money on hobbies\n"
-        "    \"additional_note_about_spending_2\": Text\n"
-        "    \"additional_note_about_spending_3\": Text\n"
+        "    \"Highest Transaction\": 1000.00,\n"
+        "    \"Lowest_transaction\": 500.00,\n"
+        "    \"Average Spend\": 750.00\n"
+        "    \"Average Top up\": 750.00\n"
+        "    \"Note_1\": \"Imagine helpful note based on data provided\"\n"
+        "    \"Note_2\": \"Imagine helpful note based on data provided\"\n"
+        "    \"Note_3\": \"Imagine helpful note based on data provided\"\n"
+        "  },\n"
+        "  \"monthly\": [\n"
+        "   {\n"
+        "    \"Month\": \"October\""
+        "    \"Money spend on food\": 1000.00,\n"
+        "    \"Money spend on hobbies\": 500.00,\n"
+        "    \"Add more\": 750.00\n"
+        "    \"Add more\": 750.00\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
+        "  },\n"
+        "  {\n "
+        "    \"Month\": \"November\""
+        "    \"Money spend on food\": 1000.00,\n"
+        "    \"Money spend on hobbies\": 500.00,\n"
+        "    \"Add more\": 750.00\n"
+        "    \"Add more\": 750.00\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
+        "    \"additional note about spending in this month\": \"Imagine helpful note based on data provided\"\n"
         "  }\n"
-        "}\n"
+        "  ]\n"
+        "}\n\n"
         "The mandatory rule for your output, that NO TEXT HAS TO BE WITHOUT JSON STRUCTURE"
     )
     return prompt
 
 
 def clean_ai_output(ai_output):
-    ai_output = re.sub(r',\s*([}\]])', r'\1', ai_output)
-    indexes = []
-    for i in range(len(ai_output)):
-        if ai_output[i] in "{}":
-            indexes.append(i)
 
-    ai_output = ai_output[int(indexes[0]):int(indexes[-1])+1]
-    return ai_output
+    ai_output = ai_output.strip()
+    ai_output = ai_output.replace('```json', '')
+    ai_output = ai_output.replace('```', '')
+    ai_output = ai_output.strip()
+
+
+    def extract_json_from_text(text):
+        brace_stack = []
+        json_start = -1
+        json_end = -1
+        for i, c in enumerate(text):
+            if c == '{':
+                if not brace_stack:
+                    json_start = i
+                brace_stack.append('{')
+            elif c == '}':
+                if brace_stack:
+                    brace_stack.pop()
+                    if not brace_stack:
+                        json_end = i + 1
+                        break
+        if json_start != -1 and json_end != -1:
+            json_str = text[json_start:json_end]
+            return json_str
+        else:
+            return ''
+
+    json_str = extract_json_from_text(ai_output)
+    if not json_str:
+        return ''
+
+    try:
+        json_data = json.loads(json_str)
+        return json.dumps(json_data)
+    except json.JSONDecodeError:
+
+        json_str_fixed = json_str.replace("'", '"')
+        json_str_fixed = re.sub(r',\s*([\]}])', r'\1', json_str_fixed)
+        json_str_fixed = re.sub(r'//.*', '', json_str_fixed)
+        json_str_fixed = re.sub(r'/\*.*?\*/', '', json_str_fixed, flags=re.DOTALL)
+
+        try:
+            json_data = json.loads(json_str_fixed)
+            return json.dumps(json_data)
+        except json.JSONDecodeError:
+
+            return ''
+

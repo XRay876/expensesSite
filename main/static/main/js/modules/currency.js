@@ -1,18 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
+const currency = () => {
     const toggleButton = document.getElementById('toggle-currency-block');
     const exchangeRatesWrapper = document.querySelector('.exchange-rates-wrapper');
-
     const toggleArrow = document.getElementById('toggle-arrow');
     let isRatesVisible = false;
-
 
     exchangeRatesWrapper.style.maxHeight = '0';
 
     function setMaxHeight() {
         exchangeRatesWrapper.style.maxHeight = exchangeRatesWrapper.scrollHeight + 'px';
-
     }
-
 
     toggleButton.addEventListener('click', function () {
         if (isRatesVisible) {
@@ -61,5 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const exchangeRatesDiv = document.getElementById('exchange-rates');
             exchangeRatesDiv.innerHTML = '<p>Error with parsing currency</p>';
         });
+};
 
-});
+export default currency;

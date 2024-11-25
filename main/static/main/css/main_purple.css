@@ -52,6 +52,11 @@
     --color-nav-button-sort-hover: rgba(255, 105, 180, 0.72);
 
     --color-btn: linear-gradient(90deg, #d8b5ff, #ffcccb);
+
+    --table-background-color: #252323;
+    --table-font-color: #cecece;
+    --table-border-color: #b4b4b4;
+    --table-border-head-color: #4f4f4f;
 }
 
 .dark-mode-variables {
@@ -100,6 +105,12 @@
     /*--color-btn: linear-gradient(90deg, #6200ce, #121212);*/
     /*--color-btn: linear-gradient(90deg, #370074, #121212);*/
     --color-btn: linear-gradient(90deg, #8E44AD, #A569BD);
+
+    --table-background-color: #b9b9b9;
+    --table-font-color: #343434;
+    --table-border-color: #494949;
+    --table-border-head-color: rgba(79, 79, 79, 0.8);
+
 }
 
 ::-webkit-scrollbar {

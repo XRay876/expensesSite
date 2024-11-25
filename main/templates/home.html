@@ -43,7 +43,12 @@
 
                         <div class="sign share-btn">
 
-                            Planning
+                            <svg fill="#fafafa" height="2rem" version="1.1" id="XMLID_124_"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 viewBox="0 0 24 24" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier"> <g id="plan"> <g> <path
+                                        d="M24,24H0V3h5V0h2v3h10V0h2v3h5V24z M2,22h20V5H2v3h20v2H2V22z M19,19H9v-2h10V19z M7,19H5v-2h2V19z M19,15H9v-2h10V15z M7,15H5v-2h2V15z"></path> </g> </g> </g></svg>
                         </div>
 
                     </button>
@@ -281,17 +286,17 @@
                 <span class="close-share" id="close-share-popup">&times;</span>
                 <p style="margin-bottom: 10px;">Share this link:</p>
                 <div class="link-share" id="copy-share-link">
-                        <input type="text" id="share-link" readonly>
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path d="M20.9983 10C20.9862 7.82497 20.8897 6.64706 20.1213 5.87868C19.2426 5 17.8284 5 15 5H12C9.17157 5 7.75736 5 6.87868 5.87868C6 6.75736 6 8.17157 6 11V16C6 18.8284 6 20.2426 6.87868 21.1213C7.75736 22 9.17157 22 12 22H15C17.8284 22 19.2426 22 20.1213 21.1213C21 20.2426 21 18.8284 21 16V15"
-                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                                <path d="M3 10V16C3 17.6569 4.34315 19 6 19M18 5C18 3.34315 16.6569 2 15 2H11C7.22876 2 5.34315 2 4.17157 3.17157C3.51839 3.82475 3.22937 4.69989 3.10149 6"
-                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                            </g>
-                        </svg>
+                    <input type="text" id="share-link" readonly>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M20.9983 10C20.9862 7.82497 20.8897 6.64706 20.1213 5.87868C19.2426 5 17.8284 5 15 5H12C9.17157 5 7.75736 5 6.87868 5.87868C6 6.75736 6 8.17157 6 11V16C6 18.8284 6 20.2426 6.87868 21.1213C7.75736 22 9.17157 22 12 22H15C17.8284 22 19.2426 22 20.1213 21.1213C21 20.2426 21 18.8284 21 16V15"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M3 10V16C3 17.6569 4.34315 19 6 19M18 5C18 3.34315 16.6569 2 15 2H11C7.22876 2 5.34315 2 4.17157 3.17157C3.51839 3.82475 3.22937 4.69989 3.10149 6"
+                                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </g>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -344,10 +349,6 @@
     </script>
 
     <script type="module" src="{% static 'main/js/main_page.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'main/js/theme.js' %}"></script>
-    <script src="{% static 'main/js/currency.js' %}"></script>
-
 
     <script type="module">
         import {showNotification} from "{% static 'main/js/modules/notifications.js' %}";
@@ -362,5 +363,4 @@
             {% endfor %}
         });
     </script>
-
 {% endblock %}

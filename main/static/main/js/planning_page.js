@@ -1,5 +1,5 @@
-import loadEffect from "./modules/loadEffects.js";
-import displaySharedPopup from "./modules/popupSharedDisplay.js";
+import exportExcel from "./modules/exportExcel.js";
+import aiResponse from "./modules/aiResponseTable.js";
 import theme from "./modules/theme.js";
 import currency from "./modules/currency.js";
 
@@ -11,11 +11,9 @@ async function safeExecute(func) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
+    safeExecute(exportExcel);
+    safeExecute(aiResponse);
     safeExecute(theme);
     safeExecute(currency);
-    safeExecute(loadEffect);
-    safeExecute(displaySharedPopup);
 });
-
-
